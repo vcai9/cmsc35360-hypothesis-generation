@@ -1,7 +1,7 @@
 # cmsc35360-hypothesis-generation
 
 ## Preprocessing
-My dataset was the MeTeOR flat edge lists. I first disambiguated the CIDs and EntrezIDs by appending a "C" in front of any CIDs and an "E" in front of any EntrezIDs. This notation is used in the output CSV files. I then concatenated the six edge lists and used the Python library `networkx` to generate a graph of the entities. I removed any entities with less than 10 neighbors from consideration, which made the task more computationally feasible. 
+My dataset was the MeTeOR flat edge lists. I first disambiguated the CIDs and EntrezIDs by appending a "C" in front of any CIDs and an "E" in front of any EntrezIDs. This notation is used in the output CSV files. I then concatenated the six edge lists and used the Python library `networkx` to generate a graph of the entities. For approach 1, I removed any entities with less than 10 neighbors from consideration, which made the task more computationally feasible. 
 ## Approach 1
 For my first approach, I used collaborative filtering with SVD. Instead of using the confidence directly, I took its log and used that to get a more informative range of ratings. While the median confidence was just 2 and the average was about 20, the maximum confidence was 151,305; meanwhile, the range after taking the log was from 0 to 15. I used the `surprise` library's implementation of SVD. After training the model on all 9,009,864 edges in the dataset, I predicted on 804,700,000 non-edges (not including nodes with fewer than 10 neighbors) and maintained a heap of the 1,000 best hypotheses by their predicted rating. The results are in `svd.csv`.  
 ## Approach 2
