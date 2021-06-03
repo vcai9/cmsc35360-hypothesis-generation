@@ -1,7 +1,5 @@
 # cmsc35360-hypothesis-generation
 
-# Hypothesis Generation Assignment
-
 ## Preprocessing
 My dataset was the MeTeOR flat edge lists. I first disambiguated the CIDs and EntrezIDs by appending a "C" in front of any CIDs and an "E" in front of any EntrezIDs. This notation is used in the output CSV files. I then concatenated the six edge lists and used the Python library `networkx` to generate a graph of the entities. I removed any entities with less than 10 neighbors from consideration, which made the task more computationally feasible. 
 ## Approach 1
